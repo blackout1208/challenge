@@ -1,7 +1,12 @@
-import { selector, atomFamily, selectorFamily } from 'recoil';
+import { atom, selector, atomFamily, selectorFamily } from 'recoil';
 import _ from 'lodash';
 
-const getQuizzes = selector({
+export const quizIDState = atom({
+    key: 'quiz-id',
+    default: '',
+});
+
+export const getQuizzes = selector({
     key: 'fetchQuizzes',
     get: async () => {
         const { errors, data } = await fetchMyQuery();    
@@ -12,7 +17,7 @@ const getQuizzes = selector({
     }
 });
 
-const quizzesState = atomFamily({
+export const quizzesState = atomFamily({
     key: 'quizzesState',
     default: selectorFamily({
       key: 'quizzes/Default',
@@ -22,11 +27,6 @@ const quizzesState = atomFamily({
       },
     })
 });
-  
-export {
-    getQuizzes,
-    quizzesState,
-}
 
 const operationsDoc = `
     query MyQuery {

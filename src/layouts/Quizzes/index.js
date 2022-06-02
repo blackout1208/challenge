@@ -8,8 +8,7 @@ import {useRecoilValue} from 'recoil'
 import { Button, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import styles from './styles'
-import { quizzesState } from './state'
-import { answersState } from '../state'
+import { quizzesState, answersState } from '../../state'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

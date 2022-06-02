@@ -1,8 +1,14 @@
-import { selector, atomFamily, selectorFamily } from 'recoil';
-import { quizIDState } from '../state'
+
+import { atom, selector, atomFamily, selectorFamily } from 'recoil';
+import { quizIDState } from './quiz'
 import _ from 'lodash';
 
-const getQuestions = selector({
+export const questionIDState = atom({
+    key: 'question-id',
+    default: '',
+});
+
+export const getQuestions = selector({
     key: 'fetchQuestions',
     get: async ({ get }) => {
         const quizID = get(quizIDState);
@@ -27,7 +33,7 @@ const getQuestions = selector({
     }
 });
 
-const questionsState = atomFamily({
+export const questionsState = atomFamily({
     key: 'questionsState',
     default: selectorFamily({
       key: 'questions/Default',
@@ -37,11 +43,6 @@ const questionsState = atomFamily({
       },
     })
 });
-  
-export {
-    getQuestions,
-    questionsState,
-}
 
 async function fetchGraphQL(operationsDoc, operationName, variables) {
     const result = await fetch(

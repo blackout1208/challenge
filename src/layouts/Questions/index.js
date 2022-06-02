@@ -4,8 +4,7 @@ import _ from 'lodash'
 import { useParams } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 import {useRecoilValue, useRecoilState} from 'recoil'
-import { questionsState } from './state'
-import { answersState, quizIDState, questionIDState } from '../state'
+import { questionsState, answersState, quizIDState, questionIDState } from '../../state'
 import { Button, Stack, Paper, Typography, FormControl, FormControlLabel, RadioGroup, Radio } from '@mui/material';
 
 const Answers = ({ options, quizID, questionID }) => {
