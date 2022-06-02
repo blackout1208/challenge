@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Header from './Header';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Quizzes from './Quizzes'
 import Questions from './Questions'
 import LinearProgress from '@mui/material/LinearProgress';
@@ -24,6 +24,14 @@ const PageNotFound = () => <div>
 
 function AppLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname === "/"){
+      navigate("/dashboard", { replace: true })
+    }
+  })
+
   const isDashboard = location.pathname === "/dashboard"
   return (
     <Stack direction="column" justifyContent="space-between" alignItems="center">
