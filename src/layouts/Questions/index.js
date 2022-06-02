@@ -34,7 +34,7 @@ const Answers = ({ options, quizID, questionID }) => {
 }
 
 const getPage = (questions, questionID) => {
-    const page = _.findIndex(questions, (question) => question.id == questionID);
+    const page = _.findIndex(questions, (question) => question.id === questionID);
     if (page === -1){
         return 0
     }

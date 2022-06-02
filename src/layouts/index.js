@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import Header from '../components/Header';
+import Header from './Header';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Quizzes from './Quizzes'
 import Questions from './Questions'

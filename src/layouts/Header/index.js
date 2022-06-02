@@ -5,8 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import {useNavigate} from 'react-router-dom';
-import { quizzesState } from '../../layouts/Quizzes/state'
-import { quizIDState} from '../../layouts/state'
+import { quizzesState } from '../Quizzes/state'
+import { quizIDState} from '../state'
 import {useRecoilValue} from 'recoil'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import styles from './styles'
