@@ -4,24 +4,39 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import {useNavigate} from 'react-router-dom';
+import { quizzesState } from '../../layouts/Quizzes/state'
+import { quizIDState} from '../../layouts/state'
+import {useRecoilValue} from 'recoil'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import styles from './styles'
 
-export default function Header({backIcon, children}) {
+export default function Header({backIcon}) {
+  const navigate = useNavigate();
+  const quizzes = useRecoilValue(quizzesState('quizzes'));
+  const quizID = useRecoilValue(quizIDState);
+  
+  let title = "Quizzes"
+  quizzes.forEach((element) => {
+    if (element.id !== quizID){
+      return
+    }
+    title = element.name
+  });
   return (
     <Box sx={styles.Box}>
-      <AppBar position="static">
+      <AppBar position="static" color="transparent">
         <Toolbar sx={styles.Header}>
           {backIcon && <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}>
+            sx={{ mr: 2 }} onClick={() => navigate("/dashboard", { replace: true })}>
             <ArrowBackOutlinedIcon />
           </IconButton>}
-          <Typography variant="h4" component="div" color="white" sx={styles.Title}>
-            {children}
+          <Typography variant="h4" component="div" color="primary" sx={styles.Title}>
+            {title}
           </Typography>
         </Toolbar>
       </AppBar>

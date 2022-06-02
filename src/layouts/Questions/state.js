@@ -7,7 +7,7 @@ const getQuestions = selector({
     get: async ({ get }) => {
         const quizID = get(quizIDState);
         if (!quizID) return;
-        console.log("quiz", quizID)
+
         const operationsDoc = `
             query MyQuery {
                 questions(where: {quiz_id: {_eq: "${quizID}"}}) {

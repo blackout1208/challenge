@@ -27,7 +27,9 @@ function AppLayout() {
   const isDashboard = location.pathname === "/dashboard"
   return (
     <Stack direction="column" justifyContent="space-between" alignItems="center">
-      <Header backIcon={!isDashboard}>{isDashboard ? "Quizzes" : "Test"}</Header>
+      <React.Suspense fallback={<LinearProgress color="secondary" sx={styles.LoadingComponent} />}>
+        <Header backIcon={!isDashboard} />
+      </React.Suspense>
       <Container maxWidth="md" sx={styles.Container}>
         <React.Suspense fallback={<LinearProgress color="secondary" sx={styles.LoadingComponent} />}>
           <Routes>
