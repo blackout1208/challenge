@@ -4,7 +4,8 @@ import _ from 'lodash'
 import { useParams } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 import {useRecoilValue, useRecoilState} from 'recoil'
-import { questionsState, answersState, quizIDState, questionIDState } from './state'
+import { questionsState } from './state'
+import { answersState, quizIDState, questionIDState } from '../state'
 import { Button, Stack, Paper, Typography, FormControl, FormControlLabel, RadioGroup, Radio } from '@mui/material';
 
 const Answers = ({ options, quizID, questionID }) => {
@@ -67,17 +68,19 @@ export default function Questions() {
     
     const page = getPage(questions, questionID);
     
-    const nextPage = `/quiz/${quizID}/question/${getQuestionByIndex(questions, page+1)}`
+    const nextPage = page === questions.length-1 ? '/dashboard' : `/quiz/${quizID}/question/${getQuestionByIndex(questions, page+1)}`
     const prevPage = `/quiz/${quizID}/question/${getQuestionByIndex(questions, page-1)}`
     const question = questions && questions[page]
 
     return (
         <Box sx={{ width: '100%' }}>
             <Typography variant="h4" align='center' sx={{marginBottom: "20px"}}>{question.text}</Typography>
-            <Answers options={question.options} quizID={"idZ"} questionID={question.id} />
+            <Answers options={question.options} quizID={quizID} questionID={question.id} />
             <Stack direction="row" justifyContent="space-evenly" alignItems="center" sx={{ marginTop: "30px"}}>
-                <Button variant="outlined" disabled={page === 0} to={prevPage} component={RouterLink}>Back</Button>
-                <Button variant="contained" disabled={page === questions.length-1} to={nextPage} component={RouterLink}>Next</Button>
+                <Button variant="outlined" disabled={page === 0} to={prevPage} component={RouterLink} sx={{ width: "180px" }}>Back</Button>
+                <Button variant="contained" to={nextPage} component={RouterLink} sx={{ width: "180px" }}>
+                    { page === questions.length-1 ? 'Finish' : "Next" }
+                </Button>
             </Stack>
         </Box>
     );
