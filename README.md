@@ -1,5 +1,5 @@
 ## To run
-I would recommend using docker to run the application to minimize the risk of an unforseen situation with machine configurations.
+I would recommend using docker to run the application to minimize the risk of an unforeseen situation with machine configurations.
 
 On terminal, at the root of the project run: ```make run```
 
@@ -11,14 +11,14 @@ To stop it, run in your terminal the following command: ```make kill```
 # Data model
 
 ## Persisting user answers
-To save users info in the database I would create table named user_answers with 3 columns:
+To save users info in the database, I would create a table named user_answers with 3 columns:
 1. question_id // FK - questions.id
 2. user_id
 3. answer
 
-On the web side, I would create a function to generate a unique identifier for the session and save it as a cookie. For every answer the user would give, we would request a new API endpoint with the request body holding question_id, user_id, and the answer to record it in the newly created table user_answers.
+I would create a function to generate a unique identifier for the session and save it as a cookie on the web side. For every user's answer, we would request a new API endpoint with the request body holding question_id, user_id, and the answer to recording it in the newly created table user_answers.
 
-## Changes in data model
+## Changes in the data model
 I would adjust the options node in the question model. Instead of a string with all answers divided by a comma, an array with an option in each position would prevent data manipulation (splif of a string) on the frontend (cleaner code);
 
 # Infrastructure
@@ -31,7 +31,7 @@ For the sake of simplicity, I will take into consideration that:
  - Gain speed to market;
  - Low infrastructure configuration time without compromising security;
 
-I would propose deploying the system on Cloud Run from GCP in that situation. We would enable the deployment of applications in seconds using a docker configuration file. The service would manage the infrastructure resources depending on the incoming requests. It would add up more "servers" in the case of increasing usage and save costs on those "servers" if it was getting no accesses (saving some costs). In terms of security, the system would be exposed to the entry PORT we define in the code, and in terms of networking configuration, we could have a granular control if that would be required.
+I would propose deploying the system on Cloud Run from GCP in that situation. We would enable the deployment of applications in seconds using a docker configuration file. The service would manage the infrastructure resources depending on the incoming requests. It would add up more "servers" in the case of increasing usage and save costs on those "servers" if it was getting no access (saving some costs). In terms of security, the system would be exposed to the entry PORT we define in the code, and in terms of networking configuration, we could have a granular control if required.
 
 Looking for the perspective of being lean, as Cloud Run permits flexible automated infrastructure with minimal human interaction, engineers can shift the focus from maintaining the infrastructure to the maintenance and improvement of the product. This could be useful for many situations and areas mentioned at the beginning of the text.
 
