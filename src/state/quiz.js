@@ -36,8 +36,6 @@ const operationsDoc = `
             questions {
                 id
                 answer
-                options
-                text
             }
         }
     }`;
